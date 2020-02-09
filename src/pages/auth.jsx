@@ -7,12 +7,14 @@ export default function CounterPage() {
   const dispatch = useDispatch();
   const error = auth.error ? auth.error.message || 'undefined error' : null;
   const { inProgress, token } = auth;
+  const alreadyLogged = !inProgress && error === null && token !== null;
+  const canLogin = !inProgress && !alreadyLogged;
 
   return (
     <>
       <button
         type="button"
-        disabled={inProgress}
+        disabled={!canLogin}
         onClick={() => {
           dispatch({ type: ActionType.Auth.LoginRequest, fail: false });
         }}
@@ -21,7 +23,7 @@ export default function CounterPage() {
       </button>
       <button
         type="button"
-        disabled={inProgress}
+        disabled={!canLogin}
         onClick={() => {
           dispatch({ type: ActionType.Auth.LoginRequest, fail: true });
         }}
