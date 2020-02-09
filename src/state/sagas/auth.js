@@ -4,10 +4,10 @@ import storeToken from '../../domain/store-token';
 import clearToken from '../../domain/clear-token';
 import ActionType from '../action-type';
 
-function* authorize() {
+function* authorize(fail) {
   try {
     yield put({ type: ActionType.Auth.SetInProgress, inProgress: true });
-    const token = yield call(rawAuthorize);
+    const token = yield call(rawAuthorize, fail);
     yield put({ type: ActionType.Auth.LoginSuccess, token });
     yield call(storeToken, token);
   } catch (error) {
@@ -22,8 +22,8 @@ function* authorize() {
 
 export default function* loginFlow() {
   while (true) {
-    yield take(ActionType.Auth.LoginRequest);
-    const task = yield fork(authorize);
+    const { fail } = yield take(ActionType.Auth.LoginRequest);
+    const task = yield fork(authorize, fail);
     const action = yield take([
       ActionType.Auth.Logout,
       ActionType.Auth.LoginError,

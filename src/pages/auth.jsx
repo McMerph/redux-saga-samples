@@ -14,10 +14,19 @@ export default function CounterPage() {
         type="button"
         disabled={inProgress}
         onClick={() => {
-          dispatch({ type: ActionType.Auth.LoginRequest });
+          dispatch({ type: ActionType.Auth.LoginRequest, fail: false });
         }}
       >
         Login
+      </button>
+      <button
+        type="button"
+        disabled={inProgress}
+        onClick={() => {
+          dispatch({ type: ActionType.Auth.LoginRequest, fail: true });
+        }}
+      >
+        Login with error
       </button>
       <button
         type="button"
