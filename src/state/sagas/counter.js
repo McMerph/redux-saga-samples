@@ -1,7 +1,6 @@
 import { put, take, takeLatest, call, all } from 'redux-saga/effects';
+import delay from '../../utils/delay';
 import ActionType from '../action-type';
-
-const delay = ms => new Promise(res => setTimeout(res, ms));
 
 function* incrementAsync() {
   yield call(delay, 1000);
