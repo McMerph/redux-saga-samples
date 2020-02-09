@@ -7,6 +7,9 @@ export default function IndexPage() {
       <li>
         <Link to="/counter/">Counter</Link>
       </li>
+      <li>
+        <Link to="/auth/">Auth</Link>
+      </li>
     </ul>
   );
 }
