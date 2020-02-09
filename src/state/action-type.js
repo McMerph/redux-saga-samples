@@ -11,6 +11,7 @@ const ActionType = {
     LoginError: 'AUTH_LOGIN_ERROR',
     Logout: 'AUTH_LOGOUT',
   },
+  Race: 'RACE',
 };
 
 export default Object.freeze(ActionType);

@@ -10,6 +10,9 @@ export default function IndexPage() {
       <li>
         <Link to="/auth/">Auth</Link>
       </li>
+      <li>
+        <Link to="/race/">Race</Link>
+      </li>
     </ul>
   );
 }
